@@ -218,10 +218,10 @@ namespace CMCS
                 selectedClaim.ReviewerComments = string.IsNullOrEmpty(comments) ? "No comments provided." : comments;
 
                 ClaimsListView.Items.Refresh();
-                
+
 
                 // Optionally, store comments or handle them as needed
-                
+                if (!string.IsNullOrEmpty(comments))
                 {
                     // For demonstration, I've stored comments in the claim's ReviewerComments property
                     // You can extend this to log comments or notify the lecturer
