@@ -190,7 +190,7 @@ namespace CMCS
                 selectedClaim.ReviewerComments = string.Empty; // Clear previous comments if any
 
                 ClaimsListView.Items.Refresh();
-                
+                MessageBox.Show("Claim approved successfully.", "Approval Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
