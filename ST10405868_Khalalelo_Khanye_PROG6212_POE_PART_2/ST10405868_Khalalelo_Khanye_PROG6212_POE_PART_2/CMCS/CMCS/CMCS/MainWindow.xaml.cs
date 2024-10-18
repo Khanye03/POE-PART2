@@ -138,7 +138,7 @@ namespace CMCS
 
             if (!decimal.TryParse(HourlyRateTextBox.Text, out decimal hourlyRate))
             {
-                
+                MessageBox.Show("Hourly Rate must be a valid number.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
