@@ -317,7 +317,7 @@ namespace CMCS
                 if (_dateReviewed != value)
                 {
                     _dateReviewed = value;
-                    
+                    OnPropertyChanged("DateReviewed");
                 }
             }
         }
