@@ -291,7 +291,7 @@ namespace CMCS
         public double Amount { get; set; }
         public DateTime DateWorked { get; set; }
 
-        
+        public string UploadedFileName { get; set; }
         public string UploadedFilePath { get; set; }
 
         public string Status
