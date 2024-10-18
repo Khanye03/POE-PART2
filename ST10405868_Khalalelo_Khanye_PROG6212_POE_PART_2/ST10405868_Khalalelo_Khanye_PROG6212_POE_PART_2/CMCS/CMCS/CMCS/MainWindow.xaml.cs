@@ -155,7 +155,7 @@ namespace CMCS
                 Amount = (double)totalAmount,
                 DateWorked = WorkDatePicker.SelectedDate.Value,
                 Status = "Submitted",
-                
+                UploadedFileName = string.IsNullOrEmpty(_uploadedFilePath) ? "No file uploaded." : Path.GetFileName(_uploadedFilePath),
                 UploadedFilePath = _uploadedFilePath,
                 DateSubmitted = DateTime.Now
             };
