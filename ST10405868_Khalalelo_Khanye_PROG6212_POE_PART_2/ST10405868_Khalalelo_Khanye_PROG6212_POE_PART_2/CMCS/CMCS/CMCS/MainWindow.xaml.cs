@@ -177,7 +177,7 @@ namespace CMCS
         {
             if (ClaimsListView.SelectedItem != null)
             {
-                
+                Claim selectedClaim = (Claim)ClaimsListView.SelectedItem;
 
                 if (selectedClaim.Status != "Submitted" && selectedClaim.Status != "Rejected")
                 {
