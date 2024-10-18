@@ -84,7 +84,7 @@ namespace CMCS
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"An error occurred while uploading the document: {ex.Message}", "Upload Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    
                 }
             }
         }
@@ -138,7 +138,7 @@ namespace CMCS
 
             if (!decimal.TryParse(HourlyRateTextBox.Text, out decimal hourlyRate))
             {
-                MessageBox.Show("Hourly Rate must be a valid number.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                
                 return;
             }
 
@@ -155,7 +155,7 @@ namespace CMCS
                 Amount = (double)totalAmount,
                 DateWorked = WorkDatePicker.SelectedDate.Value,
                 Status = "Submitted",
-                UploadedFileName = string.IsNullOrEmpty(_uploadedFilePath) ? "No file uploaded." : Path.GetFileName(_uploadedFilePath),
+                
                 UploadedFilePath = _uploadedFilePath,
                 DateSubmitted = DateTime.Now
             };
@@ -177,7 +177,7 @@ namespace CMCS
         {
             if (ClaimsListView.SelectedItem != null)
             {
-                Claim selectedClaim = (Claim)ClaimsListView.SelectedItem;
+                
 
                 if (selectedClaim.Status != "Submitted" && selectedClaim.Status != "Rejected")
                 {
@@ -190,7 +190,7 @@ namespace CMCS
                 selectedClaim.ReviewerComments = string.Empty; // Clear previous comments if any
 
                 ClaimsListView.Items.Refresh();
-                MessageBox.Show("Claim approved successfully.", "Approval Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                
             }
             else
             {
@@ -218,10 +218,10 @@ namespace CMCS
                 selectedClaim.ReviewerComments = string.IsNullOrEmpty(comments) ? "No comments provided." : comments;
 
                 ClaimsListView.Items.Refresh();
-                MessageBox.Show("Claim rejected successfully.", "Rejection Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                
 
                 // Optionally, store comments or handle them as needed
-                if (!string.IsNullOrEmpty(comments))
+                
                 {
                     // For demonstration, I've stored comments in the claim's ReviewerComments property
                     // You can extend this to log comments or notify the lecturer
@@ -291,7 +291,7 @@ namespace CMCS
         public double Amount { get; set; }
         public DateTime DateWorked { get; set; }
 
-        public string UploadedFileName { get; set; }
+        
         public string UploadedFilePath { get; set; }
 
         public string Status
@@ -317,7 +317,7 @@ namespace CMCS
                 if (_dateReviewed != value)
                 {
                     _dateReviewed = value;
-                    OnPropertyChanged("DateReviewed");
+                    
                 }
             }
         }
@@ -339,7 +339,7 @@ namespace CMCS
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            
         }
     }
 }
