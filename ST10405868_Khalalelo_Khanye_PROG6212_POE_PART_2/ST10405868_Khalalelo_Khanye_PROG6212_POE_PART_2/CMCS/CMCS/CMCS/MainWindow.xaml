@@ -1,0 +1,131 @@
+﻿<Window x:Class="CMCS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Contract Monthly Claim System" Height="718" Width="1310">
+    <Grid>
+        <TabControl>
+            <!-- Lecturer's Tab -->
+            <TabItem Header="Lecturer">
+                <Grid>
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#00FFFF"/>
+                            <GradientStop Color="#00FFFF" Offset="1"/>
+                            <GradientStop Color="#FF666666" Offset="0.056"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel Margin="20">
+                            <TextBlock FontSize="30" Text="Submit Your Monthly Claim" Foreground="White" FontFamily="Calisto MT" TextAlignment="Center" Margin="0,0,0,20"/>
+
+                            <!-- Lecturer ID -->
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock Width="150" Text="Lecturer ID:" VerticalAlignment="Center" FontSize="15" Foreground="White"/>
+                                <TextBox Width="200" x:Name="LecturerIDTextBox" />
+                            </StackPanel>
+
+                            <!-- Lecturer Name -->
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock Width="150" Text="Lecturer Name:" VerticalAlignment="Center" FontSize="15" Foreground="White"/>
+                                <TextBox Width="200" x:Name="LecturerNameTextBox" />
+                            </StackPanel>
+
+                            <!-- Hours Worked -->
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock Width="150" Text="Hours Worked:" VerticalAlignment="Center" FontSize="15" Foreground="White"/>
+                                <TextBox Width="200" x:Name="HoursWorkedTextBox" />
+                            </StackPanel>
+
+                            <!-- Rate per Hour -->
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock Width="150" Text="Hourly Rate:" VerticalAlignment="Center" FontSize="15" Foreground="White"/>
+                                <TextBox Width="200" x:Name="HourlyRateTextBox" />
+                            </StackPanel>
+
+                            <!-- Date of Work -->
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock Width="150" Text="Date Worked:" VerticalAlignment="Center" FontSize="15" Foreground="White"/>
+                                <DatePicker x:Name="WorkDatePicker" Width="200"/>
+                            </StackPanel>
+
+                            <!-- Upload Document -->
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock Width="150" Text="Supporting Document:" VerticalAlignment="Center" FontSize="15" Foreground="White"/>
+                                <Button Width="200" Content="Upload Document" x:Name="UploadDocumentButton" Background="#FFCCCCCC" Click="UploadDocumentButton_Click"/>
+                            </StackPanel>
+
+                            <!-- Display Uploaded File Name -->
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock Width="150" Text="Uploaded File:" VerticalAlignment="Center" FontSize="15" Foreground="White"/>
+                                <TextBlock Width="200" x:Name="UploadedFileNameTextBlock" Text="No file uploaded." FontSize="14" Foreground="Orange"/>
+                            </StackPanel>
+
+                            <!-- Calculate Amount -->
+                            <Button Content="Calculate Amount" Width="150" Height="40" Margin="0,20,0,0" HorizontalAlignment="Left" Background="#FF00CAFF" FontSize="15" Click="CalculateAmount_Click"/>
+
+                            <!-- Submit Claim -->
+                            <Button Content="Submit Claim" Width="150" Height="40" Background="#00FFFF" FontSize="15" HorizontalAlignment="Left" Foreground="Black" Click="SubmitClaimButton_Click"/>
+
+                            <!-- Status -->
+                            <TextBlock Text="Claim Status:" FontWeight="Bold" Margin="0,20,0,0" FontSize="19" Foreground="White"/>
+                            <TextBlock x:Name="ClaimStatusTextBlock" Text="Pending..." FontSize="14" Foreground="Red" />
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+
+            <!-- Programme Coordinator / Manager Tab -->
+            <TabItem Header="Coordinator/Manager">
+                <Grid>
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#00FFFF"/>
+                            <GradientStop Color="#00FFFF" Offset="1"/>
+                            <GradientStop Color="#00FFFF" Offset="0.056"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <StackPanel Margin="20">
+                        <TextBlock FontSize="30" Text="Verify and Approve Claims" Foreground="White" FontFamily="Calisto MT" TextAlignment="Center" Margin="0,0,0,20"/>
+
+                        <!-- Claims List -->
+                        <ListView x:Name="ClaimsListView" Margin="0,10,0,0" Height="350" Foreground="Black" BorderBrush="White" Background="#FFE5E5E5" ItemsSource="{Binding Claims}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Lecturer ID" DisplayMemberBinding="{Binding LecturerID}" Width="100"/>
+                                    <GridViewColumn Header="Lecturer Name" DisplayMemberBinding="{Binding LecturerName}" Width="150"/>
+                                    <GridViewColumn Header="Hours Worked" DisplayMemberBinding="{Binding HoursWorked}" Width="100"/>
+                                    <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Amount, StringFormat=C}" Width="100"/>
+                                    <GridViewColumn Header="Date Worked" DisplayMemberBinding="{Binding DateWorked, StringFormat=d}" Width="120"/>
+                                    <GridViewColumn Header="Uploaded File" Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding UploadedFileName}" Foreground="Blue" TextDecorations="Underline" Cursor="Hand" MouseLeftButtonUp="UploadedFileNameTextBlock_MouseLeftButtonUp"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="100"/>
+                                    <GridViewColumn Header="Date Submitted" DisplayMemberBinding="{Binding DateSubmitted, StringFormat=d}" Width="120"/>
+                                    <GridViewColumn Header="Date Reviewed" DisplayMemberBinding="{Binding DateReviewed, StringFormat=d}" Width="120"/>
+                                    <GridViewColumn Header="Reviewer Comments" DisplayMemberBinding="{Binding ReviewerComments}" Width="200"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                        <!-- Approve/Reject Buttons -->
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <Button Content="Approve" Width="100" Height="30" Margin="0,0,20,0" Background="#FF4CAF50" Foreground="White" FontSize="15" Click="ApproveButton_Click"/>
+                            <Button Content="Reject" Width="100" Height="30" Background="#FFF44336" Foreground="White" FontSize="15" Click="RejectButton_Click"/>
+                        </StackPanel>
+
+                        <!-- Comments Section for Reject -->
+                        <TextBlock Text="Add Comments (Optional):" FontWeight="Bold" Margin="0,10,0,0" Foreground="White" FontSize="16"/>
+                        <TextBox Height="100" x:Name="CommentsTextBox" AcceptsReturn="True" Background="#FFFFFFFF" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
