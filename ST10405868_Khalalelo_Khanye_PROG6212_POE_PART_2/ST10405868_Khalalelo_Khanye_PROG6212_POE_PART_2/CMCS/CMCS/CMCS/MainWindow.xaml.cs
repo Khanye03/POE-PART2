@@ -84,7 +84,7 @@ namespace CMCS
                 }
                 catch (Exception ex)
                 {
-                    
+                    MessageBox.Show($"An error occurred while uploading the document: {ex.Message}", "Upload Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
