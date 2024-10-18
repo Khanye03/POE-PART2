@@ -218,6 +218,7 @@ namespace CMCS
                 selectedClaim.ReviewerComments = string.IsNullOrEmpty(comments) ? "No comments provided." : comments;
 
                 ClaimsListView.Items.Refresh();
+                MessageBox.Show("Claim rejected successfully.", "Rejection Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
 
                 // Optionally, store comments or handle them as needed
